@@ -1,0 +1,98 @@
+<head>
+<html>
+<title>Godspeed</title>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<style type="text/css">
+
+		body {
+			margin: 0px;
+		    padding: 0px;
+		    border: 0px;	
+			clear: both;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+
+		}
+
+
+		.container {
+			position: absolute;
+			margin-left: -25%;
+			margin-right: -25%;
+			width: 150%;
+			height: 100%;
+			overflow: visible;
+	 		-webkit-transform-origin: center center ;
+
+		}
+
+		.text {
+			margin-left: 0%;
+			margin-right: 0%;
+		}
+
+		.box {
+			display: block;
+			position: relative;
+			background-repeat: repeat-x;
+			background-position: 0px center;
+		}
+
+		.bgdot {
+			background-image:url('dot.png');
+			height: <%= 100 / windSpeed1 %>%;
+		}
+
+		.bgwave {
+			background-image:url('wave.png');
+			height: <%= 100 / windSpeed2 %>%;
+		}
+
+
+		.bgdash {
+			background-image:url('dash.png');
+			height: <%= 100 / windSpeed3 %>%;
+		}
+
+</style>
+
+<script>
+		window.onload = function(){
+		TweenMax.to(".bgdot", <%= windSpeed1 %>, {backgroundPosition:"100px center", ease:Linear.easeNone, repeat:-1});
+		TweenMax.to(".bgwave", <%= windSpeed2 %>, {backgroundPosition:"100px center", ease:Linear.easeNone, repeat:-1});
+		TweenMax.to(".bgdash", <%= windSpeed3 %>, {backgroundPosition:"100px center", ease:Linear.easeNone, repeat:-1});
+}
+</script>
+
+</head>
+<body>
+	<div class="container text" style="z-index:10;">
+		<%= windSpeed1 %> km/h, <%= windDir1 %>, <%= windDir1a %><br>
+		<%= windSpeed2 %> km/h, <%= windDir2 %>, <%= windDir2a %><br>
+		<%= windSpeed3 %> km/h, <%= windDir3 %>, <%= windDir3a %>
+	</div>
+
+	<div class="container" style="-webkit-transform: rotate(<%= windDir1 %>deg);">
+		    	<% for (i = 1; i <= windSpeed1; i++) { %>
+		    		<div class="box bgdot"></div>
+		    	<% } %>
+	</div>
+
+	<div class="container" style="-webkit-transform: rotate(<%= windDir2 %>deg);">
+		    	<% for (i = 1; i <= windSpeed2; i++) { %>
+		    		<div class="box bgwave"></div>
+		    	<% } %>
+	</div>
+
+	<div class="container" style="-webkit-transform: rotate(<%= windDir3 %>deg);">
+		    	<% for (i = 1; i <= windSpeed3; i++) { %>
+		    		<div class="box bgdash"></div>
+		    	<% } %>
+	<div>
+</body>
+
+</html>
